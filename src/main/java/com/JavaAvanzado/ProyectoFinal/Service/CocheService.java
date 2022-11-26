@@ -1,6 +1,8 @@
 package com.JavaAvanzado.ProyectoFinal.Service;
 
 import com.JavaAvanzado.ProyectoFinal.Entities.Coche;
+import com.JavaAvanzado.ProyectoFinal.Entities.TiposCoches;
+import com.JavaAvanzado.ProyectoFinal.Exceptions.TipoNoExistenteException;
 import com.JavaAvanzado.ProyectoFinal.Repositories.AlmacenamientoCoche;
 import com.JavaAvanzado.ProyectoFinal.Repositories.CocheMemoria;
 
@@ -9,32 +11,49 @@ import java.util.ArrayList;
 public class CocheService {
     AlmacenamientoCoche cocheDB = new CocheMemoria();
 
-    String almacenarCoche(Coche coche){
+    public Coche crearNuevoCoche(String tipo){
+        TiposCoches tipoCoche = null;
+        switch (tipo){
+            case "Combustion" -> tipoCoche = TiposCoches.COMBUSTION;
+            case "Electrico" -> tipoCoche = TiposCoches.ELECTRICO;
+            case "Hibrido" -> tipoCoche = TiposCoches.HIBRIDO;
+        }
+        try {
+            Coche nuevoCoche = CocheFactory.frabricarCoche(tipoCoche);
+            cocheDB.guardarCoche(nuevoCoche);
+            return nuevoCoche;
+        } catch (TipoNoExistenteException e) {
+            e.getMessage();
+        }
+        return null;
+    }
+
+    public String almacenarCoche(Coche coche){
         if (cocheDB.guardarCoche(coche)){
             return "Se ha guardado el coche " + coche.getId() + ".";
         }
         return "El coche " + coche.getId() + " ya existe en la base de datos.";
     }
 
-    Coche obtenerCoche(long id){
+    public Coche obtenerCoche(long id){
         return cocheDB.obtenerCoche(id);
     }
 
-    String actualizarCoche(Coche coche){
+    public String actualizarCoche(Coche coche){
         if (cocheDB.modificarCochePorId(coche)){
             return "El coche " + coche.getId() + " se ha actualizado exitosamente.";
         }
         return "El coche " + coche.getId() + " no ha podido ser actualizado.";
     }
 
-    String eliminarCoche(long id){
+    public String eliminarCoche(long id){
         if (cocheDB.eliminarCoche(id)){
             return "Se ha eliminado el coche " + id + " correctamente.";
         }
         return "El coche " + id + " no se encuentra en la base de datos.";
     }
 
-    ArrayList<Coche> listarCoches(){
+    public ArrayList<Coche> listarCoches(){
         return cocheDB.listarCoches();
     }
 }

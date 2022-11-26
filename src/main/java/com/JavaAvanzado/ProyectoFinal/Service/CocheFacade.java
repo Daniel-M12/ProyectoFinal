@@ -5,6 +5,7 @@ import com.JavaAvanzado.ProyectoFinal.Entities.CocheCombustion;
 import com.JavaAvanzado.ProyectoFinal.Entities.CocheElectrico;
 import com.JavaAvanzado.ProyectoFinal.Entities.CocheHibrido;
 import com.JavaAvanzado.ProyectoFinal.Entities.Partes.*;
+import com.JavaAvanzado.ProyectoFinal.Repositories.AlmacenamientoCoche;
 
 public class CocheFacade {
     private CocheFacade() {

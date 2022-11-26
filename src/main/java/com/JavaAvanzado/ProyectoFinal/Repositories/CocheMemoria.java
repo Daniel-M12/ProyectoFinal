@@ -4,7 +4,7 @@ import com.JavaAvanzado.ProyectoFinal.Entities.Coche;
 
 import java.util.ArrayList;
 
-public class CocheMemoria implements AlmacenamientoCoche{
+public class CocheMemoria extends AlmacenamientoCoche{
     private ArrayList<Coche> cochesGuardados;
 
     public CocheMemoria() {
@@ -16,7 +16,9 @@ public class CocheMemoria implements AlmacenamientoCoche{
         if (existeCoche(coche.getId())){
             return false;
         }
-        cochesGuardados.add(coche);
+
+        cochesGuardados.add(asignarIdACoche(coche));
+
         return true;
     }
 
@@ -62,4 +64,6 @@ public class CocheMemoria implements AlmacenamientoCoche{
     public ArrayList<Coche> listarCoches() {
         return cochesGuardados;
     }
+
+
 }
