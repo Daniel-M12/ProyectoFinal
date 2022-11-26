@@ -4,7 +4,7 @@ import com.JavaAvanzado.ProyectoFinal.Entities.Coche;
 
 import java.util.ArrayList;
 
-public class CocheMemoria implements AlamcenamientoCoche{
+public class CocheMemoria implements AlmacenamientoCoche{
     private ArrayList<Coche> cochesGuardados;
 
     public CocheMemoria() {
@@ -12,11 +12,12 @@ public class CocheMemoria implements AlamcenamientoCoche{
     }
 
     @Override
-    public void guardarCoche(Coche coche) {
+    public boolean guardarCoche(Coche coche) {
         if (existeCoche(coche.getId())){
-            return;
+            return false;
         }
         cochesGuardados.add(coche);
+        return true;
     }
 
     @Override
@@ -32,17 +33,21 @@ public class CocheMemoria implements AlamcenamientoCoche{
     }
 
     @Override
-    public void modificarCochePorId(Coche coche) {
+    public boolean modificarCochePorId(Coche coche) {
         if (existeCoche(coche.getId())){
             cochesGuardados.set(cochesGuardados.indexOf(coche), coche);
+            return true;
         }
+        return false;
     }
 
     @Override
-    public void eliminarCoche(long id) {
+    public boolean eliminarCoche(long id) {
         if (existeCoche(id)){
             cochesGuardados.remove(obtenerCoche(id));
+            return true;
         }
+        return false;
     }
 
     private boolean existeCoche(long id){
@@ -54,4 +59,7 @@ public class CocheMemoria implements AlamcenamientoCoche{
         return false;
     }
 
+    public ArrayList<Coche> listarCoches() {
+        return cochesGuardados;
+    }
 }

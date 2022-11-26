@@ -10,6 +10,20 @@ public abstract class Coche {
     private Inyeccion inyeccion;
     private AireAcondicionado aireAcondicionado;
 
+    private Coche(){}
+    public Coche(long id, Motor motor, Inyeccion inyeccion, AireAcondicionado aireAcondicionado) {
+        this.id = id;
+        this.motor = motor;
+        this.inyeccion = inyeccion;
+        this.aireAcondicionado = aireAcondicionado;
+    }
+
+    public Coche(Motor motor, Inyeccion inyeccion, AireAcondicionado aireAcondicionado) {
+        this.motor = motor;
+        this.inyeccion = inyeccion;
+        this.aireAcondicionado = aireAcondicionado;
+    }
+
     public long getId() {
         return id;
     }
@@ -40,5 +54,15 @@ public abstract class Coche {
 
     public void setAireAcondicionado(AireAcondicionado aireAcondicionado) {
         this.aireAcondicionado = aireAcondicionado;
+    }
+
+    @Override
+    public String toString() {
+        return "Coche{" +
+                "id=" + id +
+                ", motor=" + motor +
+                ", inyeccion=" + inyeccion +
+                ", aireAcondicionado=" + aireAcondicionado +
+                '}';
     }
 }
