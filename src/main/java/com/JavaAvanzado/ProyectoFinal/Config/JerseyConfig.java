@@ -5,10 +5,10 @@ import org.springframework.stereotype.Component;
 
 import javax.ws.rs.ApplicationPath;
 
-@ApplicationPath("/api")
+@ApplicationPath("/")
 @Component
 public class JerseyConfig extends ResourceConfig {
     public JerseyConfig(){
-        this.packages("com.JavaAvanzado.ProyectoFinal.Config");
+        this.packages("com.JavaAvanzado.ProyectoFinal.Controllers");
     }
 }

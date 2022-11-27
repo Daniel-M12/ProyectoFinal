@@ -8,8 +8,8 @@ public class CocheFactory {
     private CocheFactory() {
     }
 
-    public static Coche frabricarCoche(TiposCoches tipoCoche) throws TipoNoExistenteException {
-        Coche cocheFabricado = null;
+    public static Coche fabricarCoche(TiposCoches tipoCoche) throws TipoNoExistenteException {
+        Coche cocheFabricado;
 
         switch (tipoCoche){
             case COMBUSTION -> cocheFabricado = CocheFacade.ensamblarCocheCombustion();

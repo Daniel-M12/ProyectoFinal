@@ -11,24 +11,24 @@ public class CocheFacade {
     private CocheFacade() {
     }
 
-    public static Coche ensamblarCocheCombustion(){
+    public static CocheCombustion ensamblarCocheCombustion(){
         TanqueGasolina tanqueGasolina = new TanqueGasolina(100,90,33);
 
-        Coche cocheCombustion = new CocheCombustion(ensamblarMotor(150,8),ensamblarInyeccion("Combustible",15),ensamblarAireAcondicionado("Nuevo",25),tanqueGasolina);
+        CocheCombustion cocheCombustion = new CocheCombustion(ensamblarMotor(150,8),ensamblarInyeccion("Combustible",15),ensamblarAireAcondicionado("Nuevo",25),tanqueGasolina);
 
         return cocheCombustion;
     }
 
-    public static Coche ensamblarCocheElectrico(){
+    public static CocheElectrico ensamblarCocheElectrico(){
         Bateria bateria = new Bateria(true,100);
-        Coche cocheElectrico = new CocheElectrico(ensamblarMotor(80,10),ensamblarInyeccion("Eléctrica",20),ensamblarAireAcondicionado("Nuevo",25), bateria);
+        CocheElectrico cocheElectrico = new CocheElectrico(ensamblarMotor(80,10),ensamblarInyeccion("Eléctrica",20),ensamblarAireAcondicionado("Nuevo",25), bateria);
 
         return cocheElectrico;
     }
 
-    public static Coche ensamblarCocheHibrido(){
+    public static CocheHibrido ensamblarCocheHibrido(){
         TanqueDeHidrogeno tanqueHidrogeno = new TanqueDeHidrogeno(120,300,"Activo");
-        Coche cocheHibrido = new CocheHibrido(ensamblarMotor(100,9),ensamblarInyeccion("Híbrida",18),ensamblarAireAcondicionado("Nuevo",25),tanqueHidrogeno);
+        CocheHibrido cocheHibrido = new CocheHibrido(ensamblarMotor(100,9),ensamblarInyeccion("Híbrida",18),ensamblarAireAcondicionado("Nuevo",25),tanqueHidrogeno);
 
         return cocheHibrido;
     }

@@ -4,7 +4,8 @@ import com.JavaAvanzado.ProyectoFinal.Entities.Coche;
 
 import java.util.ArrayList;
 
-public class CocheMemoria extends AlmacenamientoCoche{
+public class CocheMemoria implements AlmacenamientoCoche{
+    private static int idUltimoCoche = 0;
     private ArrayList<Coche> cochesGuardados;
 
     public CocheMemoria() {
@@ -65,5 +66,17 @@ public class CocheMemoria extends AlmacenamientoCoche{
         return cochesGuardados;
     }
 
+    public static Coche asignarIdACoche(Coche coche){
+        idUltimoCoche++;
+        coche.setId(idUltimoCoche);
+        return coche;
+    }
 
+    public static int getIdUltimoCoche() {
+        return idUltimoCoche;
+    }
+
+    public static void setIdUltimoCoche(int idUltimoCoche) {
+        CocheMemoria.idUltimoCoche = idUltimoCoche;
+    }
 }

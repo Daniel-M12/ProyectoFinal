@@ -5,27 +5,27 @@ import com.JavaAvanzado.ProyectoFinal.Entities.TiposCoches;
 import com.JavaAvanzado.ProyectoFinal.Exceptions.TipoNoExistenteException;
 import com.JavaAvanzado.ProyectoFinal.Repositories.AlmacenamientoCoche;
 import com.JavaAvanzado.ProyectoFinal.Repositories.CocheMemoria;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@Service
 public class CocheService {
     AlmacenamientoCoche cocheDB = new CocheMemoria();
 
-    public Coche crearNuevoCoche(String tipo){
-        TiposCoches tipoCoche = null;
+    public Coche crearNuevoCoche(String tipo) throws TipoNoExistenteException{
+        TiposCoches tipoCoche;
         switch (tipo){
             case "Combustion" -> tipoCoche = TiposCoches.COMBUSTION;
             case "Electrico" -> tipoCoche = TiposCoches.ELECTRICO;
             case "Hibrido" -> tipoCoche = TiposCoches.HIBRIDO;
+            default -> tipoCoche = TiposCoches.OTRO;
         }
-        try {
-            Coche nuevoCoche = CocheFactory.frabricarCoche(tipoCoche);
-            cocheDB.guardarCoche(nuevoCoche);
-            return nuevoCoche;
-        } catch (TipoNoExistenteException e) {
-            e.getMessage();
-        }
-        return null;
+
+        Coche nuevoCoche = CocheFactory.fabricarCoche(tipoCoche);
+        cocheDB.guardarCoche(nuevoCoche);
+        return nuevoCoche;
+
     }
 
     public String almacenarCoche(Coche coche){
