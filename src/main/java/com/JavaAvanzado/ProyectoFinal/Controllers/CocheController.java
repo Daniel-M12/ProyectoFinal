@@ -10,11 +10,10 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 
 import javax.print.attribute.standard.Media;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
+import java.net.URI;
 import java.util.ArrayList;
 
 import static org.springframework.http.MediaType.*;
@@ -45,5 +44,39 @@ public class CocheController {
             return cocheService.listarCoches();
         }
     }
-    
+
+    @GET
+    @Path("/Coches")
+    @Produces("application/json")
+    public ArrayList<Coche> getListaCoches(){
+        return cocheService.listarCoches();
+    }
+
+    @GET
+    @Path("/Coche/{id}")
+    @Produces("application/json")
+    public Coche getCochePorId(@PathParam("id") long id){
+        return cocheService.obtenerCoche(id);
+    }
+
+    @POST
+    @Path("/Coche/{tipo}")
+    @Consumes("application/json")
+    public Response crearCochePorTipo(@PathParam("tipo") String tipoCoche){
+        try {
+            Coche coche = cocheService.crearNuevoCoche(tipoCoche);
+            return Response.created(URI.create("/Coche/" + coche.getId())).build();
+        } catch (TipoNoExistenteException e) {
+            System.out.println(e.getMessage());
+            return Response.notModified(e.getMessage()).build();
+            //return Response.noContent().build();
+        }
+    }
+
+    @DELETE
+    @Path("/Coche/{id}")
+    public Response borrarCochePorId(@PathParam("id") long id){
+        System.out.println(cocheService.eliminarCoche(id));
+        return Response.noContent().build();
+    }
 }
