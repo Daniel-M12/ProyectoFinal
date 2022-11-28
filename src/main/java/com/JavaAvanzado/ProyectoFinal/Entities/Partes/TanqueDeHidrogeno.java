@@ -34,4 +34,13 @@ public class TanqueDeHidrogeno {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "TanqueDeHidrogeno{" +
+                "capacidad=" + capacidad +
+                ", potencia=" + potencia +
+                ", estado='" + estado + '\'' +
+                '}';
+    }
 }

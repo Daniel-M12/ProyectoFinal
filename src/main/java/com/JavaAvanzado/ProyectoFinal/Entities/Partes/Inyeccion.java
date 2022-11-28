@@ -24,4 +24,12 @@ public class Inyeccion {
     public void setVelocidadInyeccion(int velocidadInyeccion) {
         this.velocidadInyeccion = velocidadInyeccion;
     }
+
+    @Override
+    public String toString() {
+        return "Inyeccion{" +
+                "tipoInyeccion='" + tipoInyeccion + '\'' +
+                ", velocidadInyeccion=" + velocidadInyeccion +
+                '}';
+    }
 }

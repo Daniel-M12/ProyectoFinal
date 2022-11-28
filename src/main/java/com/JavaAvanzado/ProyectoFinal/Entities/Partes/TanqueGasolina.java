@@ -34,4 +34,13 @@ public class TanqueGasolina {
     public void setTemperatura(int temperatura) {
         this.temperatura = temperatura;
     }
+
+    @Override
+    public String toString() {
+        return "TanqueGasolina{" +
+                "capacidad=" + capacidad +
+                ", volumenActual=" + volumenActual +
+                ", temperatura=" + temperatura +
+                '}';
+    }
 }

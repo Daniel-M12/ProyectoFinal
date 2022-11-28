@@ -34,4 +34,13 @@ public class Motor {
     public void setVidaUtil(int vidaUtil) {
         this.vidaUtil = vidaUtil;
     }
+
+    @Override
+    public String toString() {
+        return "Motor{" +
+                "estaEncendido=" + estaEncendido +
+                ", temperatura=" + temperatura +
+                ", vidaUtil=" + vidaUtil +
+                '}';
+    }
 }

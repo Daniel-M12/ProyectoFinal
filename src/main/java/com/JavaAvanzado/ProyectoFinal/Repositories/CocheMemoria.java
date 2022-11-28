@@ -37,10 +37,14 @@ public class CocheMemoria implements AlmacenamientoCoche{
 
     @Override
     public boolean modificarCochePorId(Coche coche) {
-        if (existeCoche(coche.getId())){
-            cochesGuardados.set(cochesGuardados.indexOf(coche), coche);
+        Coche cocheModif = obtenerCoche(coche.getId());
+        int index = cochesGuardados.indexOf(cocheModif);
+        if (cocheModif != null){
+            cocheModif = coche;
+            cochesGuardados.set(index,cocheModif);
             return true;
         }
+
         return false;
     }
 

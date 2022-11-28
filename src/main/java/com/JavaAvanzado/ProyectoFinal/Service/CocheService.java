@@ -39,11 +39,11 @@ public class CocheService {
         return cocheDB.obtenerCoche(id);
     }
 
-    public String actualizarCoche(Coche coche){
+    public Coche actualizarCoche(Coche coche){
         if (cocheDB.modificarCochePorId(coche)){
-            return "El coche " + coche.getId() + " se ha actualizado exitosamente.";
+            return coche;
         }
-        return "El coche " + coche.getId() + " no ha podido ser actualizado.";
+        return null;
     }
 
     public String eliminarCoche(long id){

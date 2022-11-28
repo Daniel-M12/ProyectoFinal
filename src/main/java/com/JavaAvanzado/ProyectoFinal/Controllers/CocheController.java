@@ -1,28 +1,25 @@
 package com.JavaAvanzado.ProyectoFinal.Controllers;
 
 import com.JavaAvanzado.ProyectoFinal.Entities.Coche;
-import com.JavaAvanzado.ProyectoFinal.Entities.CocheCombustion;
 import com.JavaAvanzado.ProyectoFinal.Exceptions.TipoNoExistenteException;
 import com.JavaAvanzado.ProyectoFinal.Service.CocheService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 
-import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 import java.net.URI;
 import java.util.ArrayList;
 
-import static org.springframework.http.MediaType.*;
-
 @Controller
 @Path("/")
 public class CocheController {
     @Autowired
     CocheService cocheService;
+    private static final ObjectMapper mapper = new ObjectMapper();
 
     public CocheController(CocheService cocheService) {
         this.cocheService = cocheService;
@@ -62,15 +59,27 @@ public class CocheController {
     @POST
     @Path("/Coche/{tipo}")
     @Consumes("application/json")
+    @Produces("application/json")
     public Response crearCochePorTipo(@PathParam("tipo") String tipoCoche){
         try {
             Coche coche = cocheService.crearNuevoCoche(tipoCoche);
-            return Response.created(URI.create("/Coche/" + coche.getId())).build();
+            return Response.created(URI.create("/Coche/" + coche.getId())).entity(coche).build();
         } catch (TipoNoExistenteException e) {
             System.out.println(e.getMessage());
             return Response.notModified(e.getMessage()).build();
             //return Response.noContent().build();
         }
+    }
+
+    @PUT
+    @Path("/Coche/actualizar")
+    @Produces("application/json")
+    @Consumes("application/json")
+    public Response actualizarCoche(Coche coche){
+        Coche cocheJson = cocheService.actualizarCoche(coche);
+
+        return Response.status(Response.Status.OK).entity(cocheJson).build();
+
     }
 
     @DELETE

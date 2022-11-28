@@ -24,4 +24,12 @@ public class Bateria {
     public void setCarga(int carga) {
         this.carga = carga;
     }
+
+    @Override
+    public String toString() {
+        return "Bateria{" +
+                "encendido=" + encendido +
+                ", carga=" + carga +
+                '}';
+    }
 }

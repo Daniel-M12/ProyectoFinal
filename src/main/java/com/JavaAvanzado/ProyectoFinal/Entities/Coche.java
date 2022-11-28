@@ -3,21 +3,34 @@ package com.JavaAvanzado.ProyectoFinal.Entities;
 import com.JavaAvanzado.ProyectoFinal.Entities.Partes.AireAcondicionado;
 import com.JavaAvanzado.ProyectoFinal.Entities.Partes.Inyeccion;
 import com.JavaAvanzado.ProyectoFinal.Entities.Partes.Motor;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = CocheCombustion.class, name = "CocheCombustion"),
+        @JsonSubTypes.Type(value = CocheElectrico.class, name = "CocheElectrico"),
+        @JsonSubTypes.Type(value = CocheHibrido.class, name = "CocheHibrido"),}
+)
 public abstract class Coche {
     private long id;
     private Motor motor;
     private Inyeccion inyeccion;
     private AireAcondicionado aireAcondicionado;
 
-    private Coche(){}
+    public Coche(){}
+
+    @JsonCreator
     public Coche(long id, Motor motor, Inyeccion inyeccion, AireAcondicionado aireAcondicionado) {
         this.id = id;
         this.motor = motor;
         this.inyeccion = inyeccion;
         this.aireAcondicionado = aireAcondicionado;
     }
-
+    @JsonCreator
     public Coche(Motor motor, Inyeccion inyeccion, AireAcondicionado aireAcondicionado) {
         this.motor = motor;
         this.inyeccion = inyeccion;
