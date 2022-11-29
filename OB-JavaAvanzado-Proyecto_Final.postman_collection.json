@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "9aedb740-fbb7-4c7f-ac4f-e081d8f30ab1",
+		"name": "OB-JavaAvanzado-Proyecto_Final",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23833757"
+	},
+	"item": [
+		{
+			"name": "Listar Coches guardados",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/Coches",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Coches"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Coche por id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/Coche/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Coche",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Coche por tipo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/Coche/Hibrido",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Coche",
+						"Hibrido"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Prueba",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Coche por id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/Coche/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Coche",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/Coche/actualizar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"@type\": \"CocheCombustion\",\n        \"id\": 1,\n        \"motor\": {\n            \"estaEncendido\": false,\n            \"temperatura\": 150.0,\n            \"vidaUtil\": 8\n        },\n        \"inyeccion\": {\n            \"tipoInyeccion\": \"Combustible\",\n            \"velocidadInyeccion\": 15\n        },\n        \"aireAcondicionado\": {\n            \"estaEncendido\": true,\n            \"estado\": \"Nuevo\",\n            \"temperatura\": 25.0\n        }\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/Coche/actualizar",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Coche",
+						"actualizar"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
